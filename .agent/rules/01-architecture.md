@@ -15,10 +15,13 @@ Code is organized by **Feature** (Domain) logic, not just technical type.
 - `src/features/[feature-name]`: Self-contained domains.
 - `src/shared`: Reusable components.
 
-## IPC Bridge
+## IPC Bridge & Security
 
-- Renderer (`src`) NEVER imports `electron` directly.
-- Use `window.electronAPI.invoke('channel', data)`.
+- **Sandbox**: Enabled (`sandbox: true`) in `electron/main/index.ts` for enhanced security.
+- **Type-Safe IPC**:
+  - Define events in `src/shared/types/ipc.ts` (interface `IpcEvents`).
+  - Renderer (`src`) NEVER imports `electron` directly.
+  - Use `window.electronAPI.invoke('channel', data)` which infers types automatically from `IpcEvents`.
 
 ## Structure Visualization
 
