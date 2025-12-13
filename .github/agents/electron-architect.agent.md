@@ -66,4 +66,9 @@ Você tem acesso a workflows definidos como prompts. Use-os quando solicitado:
 1. Sempre verifique a estrutura do projeto antes de criar arquivos (`python scripts/tree_project.py`).
 2. Use `npm run generate` para criar novos componentes, features ou stores.
 3. Mantenha o histórico de erros limpo rodando `pwsh scripts/log_lint.ps1` quando encontrar problemas.
-4. Consulte `docs/SECURITY.md` para práticas de segurança do template.
+4. Consulte `.template/SECURITY.md` para práticas de segurança do template.
+
+## Estrutura de Documentação
+
+- **`.template/`**: Documentação do template (ARCHITECTURE.md, SECURITY.md)
+- **`docs/`**: Reservada para documentação de negócio do projeto que usar este template

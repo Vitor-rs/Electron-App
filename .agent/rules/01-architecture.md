@@ -15,6 +15,11 @@ Code is organized by **Feature** (Domain) logic, not just technical type.
 - src/features/[feature-name]: Self-contained domains.
 - src/shared: Reusable components.
 
+### Documentation Structure
+
+- **.template/**: Template documentation (ARCHITECTURE.md, SECURITY.md)
+- **docs/**: Reserved for business documentation of projects using this template
+
 ## IPC Bridge & Security
 
 - **Sandbox**: Enabled in electron/main/index.ts for enhanced security.
@@ -29,7 +34,7 @@ Code is organized by **Feature** (Domain) logic, not just technical type.
 4. **Update ALLOWED_CHANNELS** in electron/preload/index.ts
 5. Create service in src/features/
 
-See docs/SECURITY.md for full security documentation.
+See .template/SECURITY.md for full security documentation.
 
 ## Structure Visualization
 

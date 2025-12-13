@@ -54,6 +54,11 @@ Este projeto implementa múltiplas camadas de segurança:
 - **Preload**: Whitelist de canais IPC (`ALLOWED_CHANNELS`)
 - **CSP**: Content Security Policy restritivo
 
-Documentação completa: `docs/SECURITY.md`
+Documentação completa: `.template/SECURITY.md`
 
 Use `npm run security:check` para verificar vulnerabilidades.
+
+## Estrutura de Documentação
+
+- **`.template/`**: Documentação do template (ARCHITECTURE.md, SECURITY.md)
+- **`docs/`**: Reservada para documentação de negócio do projeto que usar este template
