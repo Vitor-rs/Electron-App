@@ -19,7 +19,9 @@
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
     "prepare": "husky",
-    "generate": "plop"
+    "generate": "plop",
+    "security:audit": "npm audit --audit-level=high",
+    "security:check": "npm run lint && npm run typecheck && npm audit --audit-level=moderate"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.15",

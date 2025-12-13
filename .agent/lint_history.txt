@@ -1,0 +1,96 @@
+
+----------------------------------------
+[LINT RUN] 2025-12-13 17:12:47
+----------------------------------------
+
+
+C:\Users\Vitor\Documents\projetos\Templates\Electron-App\electron\preload\index.ts
+  27:66  error  Invalid type "never" of template literal expression  @typescript-eslint/restrict-template-expressions
+  35:20  error  Unexpected empty arrow function                      @typescript-eslint/no-empty-function
+
+C:\Users\Vitor\Documents\projetos\Templates\Electron-App\src\shared\components\ui\badge.tsx
+  37:17  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+
+C:\Users\Vitor\Documents\projetos\Templates\Electron-App\src\shared\components\ui\button.tsx
+  60:18  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+
+C:\Users\Vitor\Documents\projetos\Templates\Electron-App\src\shared\components\ui\sidebar.tsx
+  705:3  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+
+Ô£û 5 problems (2 errors, 3 warnings)
+
+
+[PRETTIER CHECK]
+
+Checking formatting...
+[warn] .agent/rules/01-architecture.md
+[warn] .agent/workflows/security-audit.md
+[warn] .github/agents/electron-architect.agent.md
+[warn] .github/copilot-instructions.md
+[warn] .github/prompts/scaffold-feature.prompt.md
+[warn] .github/prompts/verify-project.prompt.md
+[warn] .github/prompts/view-project-tree.prompt.md
+[warn] .github/workflows/security-audit.yml
+[warn] .lintstagedrc.mjs
+[warn] .vscode/extensions.json
+[warn] .vscode/settings.json
+[warn] commitlint.config.mjs
+[warn] docs/SECURITY.md
+[warn] electron-builder.yml
+[warn] electron/main/index.ts
+[warn] electron/preload/index.ts
+[warn] eslint.config.mjs
+[warn] index.html
+[warn] package-lock.json
+[warn] package.json
+[warn] plop-templates/component/component.tsx.hbs
+[warn] plop-templates/component/index.ts.hbs
+[warn] plop-templates/feature/index.ts.hbs
+[error] plop-templates/feature/schema.ts.hbs: SyntaxError: Unclosed element `typeof` (19:55)
+[error]   17 |
+[error]   18 | export type {{pascalCase name}}FormData = z.infer<typeof create{{pascalCase name}}Schema>
+[error] > 19 | export type Update{{pascalCase name}}FormData = z.infer<typeof update{{pascalCase name}}Schema>
+[error]      |                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[error]   20 |
+[warn] plop-templates/feature/service.ts.hbs
+[error] plop-templates/feature/store.ts.hbs: SyntaxError: Cannot use mustaches in an elements tagname (20:50)
+[error]   18 | }
+[error]   19 |
+[error] > 20 | export const use{{pascalCase name}}Store = create<{{pascalCase name}}State & {{pascalCase name}}Actions>()(
+[error]      |                                                  ^^^^^^^^^^^^^^^^^^^
+[error]   21 |   devtools(
+[error]   22 |     (set) => ({
+[error]   23 |       ...initialState,
+[warn] plop-templates/feature/types.ts.hbs
+[error] plop-templates/store/store.ts.hbs: SyntaxError: Cannot use mustaches in an elements tagname (20:50)
+[error]   18 | }
+[error]   19 |
+[error] > 20 | export const use{{pascalCase name}}Store = create<{{pascalCase name}}State & {{pascalCase name}}Actions>()(
+[error]      |                                                  ^^^^^^^^^^^^^^^^^^^
+[error]   21 |   devtools(
+[error]   22 |     (set) => ({
+[error]   23 |       ...initialState,
+[warn] plopfile.mjs
+[warn] postcss.config.mjs
+[warn] prettier.config.mjs
+[warn] src/app/components/AppSidebar.tsx
+[warn] src/app/layouts/RootLayout.tsx
+[warn] src/features/home/components/HomePage.tsx
+[warn] src/features/users/services/user.service.ts
+[warn] src/index.css
+[warn] src/shared/components/ui/badge.tsx
+[warn] src/shared/components/ui/button.tsx
+[warn] src/shared/components/ui/card.tsx
+[warn] src/shared/components/ui/input.tsx
+[warn] src/shared/components/ui/scroll-area.tsx
+[warn] src/shared/components/ui/separator.tsx
+[warn] src/shared/components/ui/sheet.tsx
+[warn] src/shared/components/ui/sidebar.tsx
+[warn] src/shared/components/ui/skeleton.tsx
+[warn] src/shared/components/ui/tooltip.tsx
+[warn] src/shared/hooks/use-mobile.ts
+[warn] src/shared/types/ipc.ts
+[warn] tailwind.config.js
+[warn] tsconfig.json
+[warn] tsconfig.preload.json
+Error occurred when checking code style in 3 files.

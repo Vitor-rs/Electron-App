@@ -1,7 +1,23 @@
-import { app, BrowserWindow, shell } from 'electron'
+import { app, BrowserWindow, shell, session } from 'electron'
 import { join } from 'node:path'
 import { registerIpcHandlers } from './ipc'
 import { closeDatabase } from './database/client'
+
+// Security: Allowed permissions whitelist
+const ALLOWED_PERMISSIONS = new Set(['clipboard-read', 'clipboard-write', 'notifications'])
+
+// Security: Configure session permissions
+function configureSecurityHandlers(): void {
+  // Block permission requests not in whitelist
+  session.defaultSession.setPermissionRequestHandler((_webContents, permission, callback) => {
+    callback(ALLOWED_PERMISSIONS.has(permission))
+  })
+
+  // Block permission checks not in whitelist
+  session.defaultSession.setPermissionCheckHandler((_webContents, permission) => {
+    return ALLOWED_PERMISSIONS.has(permission)
+  })
+}
 
 function createWindow(): void {
   const mainWindow = new BrowserWindow({
@@ -16,6 +32,9 @@ function createWindow(): void {
       sandbox: true,
       contextIsolation: true,
       nodeIntegration: false,
+      // Security: Additional hardening
+      webviewTag: false,
+      allowRunningInsecureContent: false,
     },
   })
 
@@ -24,6 +43,17 @@ function createWindow(): void {
     mainWindow.show()
   })
 
+  // Security: Block navigation to external URLs
+  mainWindow.webContents.on('will-navigate', (event, url) => {
+    const allowedOrigins = ['file://', 'http://localhost', 'https://localhost']
+    const isAllowed = allowedOrigins.some((origin) => url.startsWith(origin))
+    if (!isAllowed) {
+      event.preventDefault()
+      console.warn(`[Security] Blocked navigation to: ${url}`)
+    }
+  })
+
+  // Security: Block new window creation, open in external browser
   mainWindow.webContents.setWindowOpenHandler((details) => {
     void shell.openExternal(details.url)
     return { action: 'deny' }
@@ -44,6 +74,9 @@ function createWindow(): void {
 void app.whenReady().then(() => {
   // Set app user model id for windows
   app.setAppUserModelId('com.electron.template')
+
+  // Security: Configure session handlers
+  configureSecurityHandlers()
 
   // Register IPC handlers
   registerIpcHandlers()

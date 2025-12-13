@@ -10,5 +10,5 @@
       "@main/*": ["electron/main/*"]
     }
   },
-  "include": ["electron/preload/**/*"]
+  "include": ["electron/preload/**/*", "src/shared/types/**/*"]
 }

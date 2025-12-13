@@ -3,6 +3,17 @@ productName: Electron-app
 directories:
   buildResources: resources
   output: dist
+
+# Security: Enable ASAR archive
+asar: true
+
+# Auto-update: GitHub Releases configuration
+# Uncomment and configure when ready to publish
+# publish:
+#   provider: github
+#   owner: YOUR_GITHUB_USERNAME
+#   repo: YOUR_REPO_NAME
+#   releaseType: release
 files:
   - '!**/.vscode/*'
   - '!src/*'

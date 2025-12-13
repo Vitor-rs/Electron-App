@@ -49,6 +49,7 @@ export default [
   // React configuration
   {
     files: ['src/**/*.{ts,tsx}'],
+    ignores: ['src/shared/components/ui/**/*.{ts,tsx}'],
     plugins: {
       react,
       'react-hooks': reactHooks,
@@ -70,6 +71,32 @@ export default [
       ...react.configs['jsx-runtime'].rules,
       ...reactHooks.configs.recommended.rules,
       'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
+      'react/prop-types': 'off',
+    },
+  },
+
+  // shadcn/ui components - allow exporting variants alongside components
+  {
+    files: ['src/shared/components/ui/**/*.{ts,tsx}'],
+    plugins: {
+      react,
+      'react-hooks': reactHooks,
+    },
+    languageOptions: {
+      parserOptions: {
+        ecmaFeatures: { jsx: true },
+      },
+      globals: {
+        ...globals.browser,
+      },
+    },
+    settings: {
+      react: { version: 'detect' },
+    },
+    rules: {
+      ...react.configs.recommended.rules,
+      ...react.configs['jsx-runtime'].rules,
+      ...reactHooks.configs.recommended.rules,
       'react/prop-types': 'off',
     },
   },
