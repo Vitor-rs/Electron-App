@@ -11,23 +11,46 @@ export function HomePage() {
   const stack = [
     {
       category: 'Core',
-      items: ['Electron', 'React 18', 'TypeScript', 'Vite'],
+      items: [
+        { name: 'Electron', url: 'https://www.electronjs.org/' },
+        { name: 'React 18', url: 'https://react.dev/' },
+        { name: 'TypeScript', url: 'https://www.typescriptlang.org/' },
+        { name: 'Vite', url: 'https://vitejs.dev/' },
+      ],
     },
     {
       category: 'UI & Styling',
-      items: ['Tailwind CSS v4', 'Shadcn/ui', 'Lucide Icons'],
+      items: [
+        { name: 'Tailwind CSS', url: 'https://tailwindcss.com/' },
+        { name: 'Shadcn/ui', url: 'https://ui.shadcn.com/' },
+        { name: 'Lucide Icons', url: 'https://lucide.dev/' },
+      ],
     },
     {
       category: 'Data & State',
-      items: ['SQLite (better-sqlite3)', 'Drizzle ORM', 'Zustand', 'React Query'],
+      items: [
+        { name: 'SQLite (better-sqlite3)', url: 'https://github.com/WiseLibs/better-sqlite3' },
+        { name: 'Drizzle ORM', url: 'https://orm.drizzle.team/' },
+        { name: 'Zustand', url: 'https://github.com/pmndrs/zustand' },
+        { name: 'React Query', url: 'https://tanstack.com/query/latest' },
+      ],
     },
     {
       category: 'Validation & Forms',
-      items: ['Zod', 'React Hook Form'],
+      items: [
+        { name: 'Zod', url: 'https://zod.dev/' },
+        { name: 'React Hook Form', url: 'https://react-hook-form.com/' },
+      ],
     },
     {
       category: 'Tooling & Quality',
-      items: ['ESLint', 'Prettier', 'Plop (Scaffolding)', 'Husky', 'Commitlint'],
+      items: [
+        { name: 'ESLint', url: 'https://eslint.org/' },
+        { name: 'Prettier', url: 'https://prettier.io/' },
+        { name: 'Plop (Scaffolding)', url: 'https://plopjs.com/' },
+        { name: 'Husky', url: 'https://typicode.github.io/husky/' },
+        { name: 'Commitlint', url: 'https://commitlint.js.org/' },
+      ],
     },
   ]
 
@@ -56,9 +79,17 @@ export function HomePage() {
               <CardContent>
                 <div className="flex flex-wrap gap-2">
                   {group.items.map((item) => (
-                    <Badge key={item} variant="secondary">
-                      {item}
-                    </Badge>
+                    <a
+                      key={item.name}
+                      href={item.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:opacity-80"
+                    >
+                      <Badge variant="secondary" className="cursor-pointer hover:bg-secondary/80">
+                        {item.name}
+                      </Badge>
+                    </a>
                   ))}
                 </div>
               </CardContent>
