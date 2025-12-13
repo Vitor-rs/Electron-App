@@ -1,0 +1,7 @@
+# App Icon Placeholder
+
+Place your app icons here:
+
+- icon.ico (Windows)
+- icon.icns (macOS)
+- icon.png (Linux)

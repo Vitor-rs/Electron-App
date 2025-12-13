@@ -1,0 +1,19 @@
+import { z } from 'zod'
+
+export const {{camelCase name}}Schema = z.object({
+  id: z.string().uuid(),
+  name: z.string().min(1, 'Nome é obrigatório'),
+  createdAt: z.date(),
+  updatedAt: z.date(),
+})
+
+export const create{{pascalCase name}}Schema = {{camelCase name}}Schema.omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+})
+
+export const update{{pascalCase name}}Schema = create{{pascalCase name}}Schema.partial()
+
+export type {{pascalCase name}}FormData = z.infer<typeof create{{pascalCase name}}Schema>
+export type Update{{pascalCase name}}FormData = z.infer<typeof update{{pascalCase name}}Schema>

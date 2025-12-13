@@ -1,0 +1,24 @@
+{
+  "extends": "@electron-toolkit/tsconfig/tsconfig.node.json",
+  "compilerOptions": {
+    "composite": true,
+    "allowSyntheticDefaultImports": true,
+    "allowJs": true,
+    "noEmit": true,
+    "baseUrl": ".",
+    "paths": {
+      "@main/*": ["electron/main/*"]
+    }
+  },
+  "include": [
+    "electron.vite.config.ts",
+    "electron/main/**/*",
+    "drizzle.config.ts",
+    "tailwind.config.js",
+    "eslint.config.mjs",
+    "commitlint.config.mjs",
+    "prettier.config.mjs",
+    ".lintstagedrc.mjs",
+    "scripts/**/*"
+  ]
+}

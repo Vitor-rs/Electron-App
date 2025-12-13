@@ -1,0 +1,24 @@
+// {{pascalCase name}} Service
+// Add IPC calls to interact with main process
+
+export const {{camelCase name}}Service = {
+  async getAll() {
+    return window.electronAPI.invoke('{{kebabCase name}}:getAll')
+  },
+
+  async getById(id: string) {
+    return window.electronAPI.invoke('{{kebabCase name}}:getById', id)
+  },
+
+  async create(data: unknown) {
+    return window.electronAPI.invoke('{{kebabCase name}}:create', data)
+  },
+
+  async update(id: string, data: unknown) {
+    return window.electronAPI.invoke('{{kebabCase name}}:update', id, data)
+  },
+
+  async delete(id: string) {
+    return window.electronAPI.invoke('{{kebabCase name}}:delete', id)
+  },
+}
