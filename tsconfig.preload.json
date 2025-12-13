@@ -5,7 +5,9 @@
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
     "paths": {
-      "@preload/*": ["electron/preload/*"]
+      "@preload/*": ["electron/preload/*"],
+      "@shared/*": ["src/shared/*"],
+      "@main/*": ["electron/main/*"]
     }
   },
   "include": ["electron/preload/**/*"]

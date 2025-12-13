@@ -1,9 +1,13 @@
 import { contextBridge, ipcRenderer } from 'electron'
+import type { IpcEvents } from '@shared/types/ipc'
 
 // Typed API exposed to renderer
 export const electronAPI = {
-  invoke: <T>(channel: string, ...args: unknown[]): Promise<T> => {
-    return ipcRenderer.invoke(channel, ...args) as Promise<T>
+  invoke: <K extends keyof IpcEvents>(
+    channel: K,
+    ...args: IpcEvents[K]['request']
+  ): Promise<IpcEvents[K]['response']> => {
+    return ipcRenderer.invoke(channel, ...args) as Promise<IpcEvents[K]['response']>
   },
   on: (channel: string, callback: (...args: unknown[]) => void) => {
     const subscription = (_event: Electron.IpcRendererEvent, ...args: unknown[]) => {
