@@ -22,6 +22,8 @@
     "generate": "plop"
   },
   "dependencies": {
+    "@radix-ui/react-scroll-area": "^1.2.10",
+    "@radix-ui/react-slot": "^1.2.4",
     "better-sqlite3": "^11.3.0",
     "clsx": "^2.1.1",
     "drizzle-orm": "^0.33.0",
