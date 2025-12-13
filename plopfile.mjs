@@ -45,6 +45,27 @@ export default function (plop) {
         path: 'src/features/{{kebabCase name}}/types/index.ts',
         templateFile: 'plop-templates/feature/types.ts.hbs',
       },
+      {
+        type: 'add',
+        path: 'electron/main/ipc/handlers/{{kebabCase name}}.handlers.ts',
+        templateFile: 'plop-templates/feature/handler.ts.hbs',
+      },
+      function (answers) {
+        return `
+╔══════════════════════════════════════════════════════════════════╗
+║  ✅ Feature "${answers.name}" created successfully!              ║
+╠══════════════════════════════════════════════════════════════════╣
+║  IMPORTANT: Complete the following steps manually:               ║
+║                                                                  ║
+║  1. Add IPC types in src/shared/types/ipc.ts                    ║
+║  2. Register handler in electron/main/ipc/index.ts              ║
+║  3. Update ALLOWED_CHANNELS in electron/preload/index.ts        ║
+║  4. Register routes in src/app/router/index.tsx (if needed)     ║
+║                                                                  ║
+║  See docs/SECURITY.md for security guidelines.                  ║
+╚══════════════════════════════════════════════════════════════════╝
+`
+      },
     ],
   })
 
@@ -99,9 +120,7 @@ export default function (plop) {
       },
     ],
     actions: (data) => {
-      const basePath = data.feature
-        ? `src/features/${data.feature}/stores`
-        : 'src/shared/stores'
+      const basePath = data.feature ? `src/features/${data.feature}/stores` : 'src/shared/stores'
 
       return [
         {

@@ -59,3 +59,24 @@ src/
 - **Preload**: `electron/preload` (Bridge).
 - **Renderer**: `src` (Web environment).
 - **Communication**: Renderer calls `window.electronAPI.invoke()`. NEVER import `electron` directly in React components.
+
+## Security
+
+This template implements multiple security layers:
+
+- **Sandbox**: Enabled in main process for renderer isolation.
+- **Context Isolation**: Preload scripts run in separate context.
+- **CSP**: Strict Content Security Policy in `index.html`.
+- **IPC Whitelist**: Only channels in `ALLOWED_CHANNELS` can be invoked.
+- **Permission Handlers**: Explicit whitelist for Electron permissions.
+
+See `docs/SECURITY.md` for complete security documentation.
+
+### Adding New IPC Channels
+
+When adding new IPC communication, you must update:
+
+1. `src/shared/types/ipc.ts` - Add type definitions
+2. `electron/main/ipc/handlers/` - Create handler
+3. `electron/main/ipc/index.ts` - Register handler
+4. `electron/preload/index.ts` - Add to `ALLOWED_CHANNELS`

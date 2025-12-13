@@ -1,0 +1,39 @@
+import { ipcMain } from 'electron'
+import { getDatabase } from '../../database/client'
+import { {{camelCase name}}s } from '../../database/schema'
+import { eq } from 'drizzle-orm'
+
+export function register{{pascalCase name}}Handlers() {
+  const db = getDatabase()
+
+  ipcMain.handle('{{kebabCase name}}:getAll', async () => {
+    return db.select().from({{camelCase name}}s).all()
+  })
+
+  ipcMain.handle('{{kebabCase name}}:getById', async (_event, id: string) => {
+    const result = db.select().from({{camelCase name}}s).where(eq({{camelCase name}}s.id, id)).get()
+    return result ?? null
+  })
+
+  ipcMain.handle('{{kebabCase name}}:create', async (_event, data: unknown) => {
+    // TODO: Add Zod validation here
+    const result = db.insert({{camelCase name}}s).values(data as Record<string, unknown>).returning().get()
+    return result
+  })
+
+  ipcMain.handle('{{kebabCase name}}:update', async (_event, id: string, data: unknown) => {
+    // TODO: Add Zod validation here
+    const result = db
+      .update({{camelCase name}}s)
+      .set(data as Record<string, unknown>)
+      .where(eq({{camelCase name}}s.id, id))
+      .returning()
+      .get()
+    return result
+  })
+
+  ipcMain.handle('{{kebabCase name}}:delete', async (_event, id: string) => {
+    db.delete({{camelCase name}}s).where(eq({{camelCase name}}s.id, id)).run()
+    return true
+  })
+}

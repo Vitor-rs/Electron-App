@@ -1,8 +1,12 @@
 // {{pascalCase name}} Service
-// Add IPC calls to interact with main process
+// IPC calls to interact with main process
+
+// TODO: Import your feature types after defining them
+// import type { {{pascalCase name}}, New{{pascalCase name}} } from '../types'
 
 export const {{camelCase name}}Service = {
   async getAll() {
+    // TODO: Update return type after adding IPC types
     return window.electronAPI.invoke('{{kebabCase name}}:getAll')
   },
 
@@ -10,11 +14,13 @@ export const {{camelCase name}}Service = {
     return window.electronAPI.invoke('{{kebabCase name}}:getById', id)
   },
 
-  async create(data: unknown) {
+  async create(data: Record<string, unknown>) {
+    // TODO: Replace with New{{pascalCase name}} type after defining
     return window.electronAPI.invoke('{{kebabCase name}}:create', data)
   },
 
-  async update(id: string, data: unknown) {
+  async update(id: string, data: Record<string, unknown>) {
+    // TODO: Replace with Partial<New{{pascalCase name}}> after defining
     return window.electronAPI.invoke('{{kebabCase name}}:update', id, data)
   },
 
@@ -22,3 +28,11 @@ export const {{camelCase name}}Service = {
     return window.electronAPI.invoke('{{kebabCase name}}:delete', id)
   },
 }
+
+/*
+ * IMPORTANT: After creating this service, you must:
+ * 1. Add IPC types in src/shared/types/ipc.ts
+ * 2. Update ALLOWED_CHANNELS in electron/preload/index.ts
+ * 3. Create handler in electron/main/ipc/handlers/{{kebabCase name}}.handlers.ts
+ * 4. Register handler in electron/main/ipc/index.ts
+ */

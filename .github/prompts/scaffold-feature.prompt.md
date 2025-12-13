@@ -14,8 +14,38 @@ Siga estes passos para criar uma nova feature:
 
 2. Verifique se a nova pasta da feature foi criada em `src/features/`.
 
-3. Lembrete: Registre a nova feature no roteador da aplicação se ela tiver páginas.
+3. Adicione os tipos IPC em `src/shared/types/ipc.ts`:
+
+   ```typescript
+   'feature-name:getAll': {
+     request: []
+     response: FeatureName[]
+   }
+   ```
+
+4. Registre o handler em `electron/main/ipc/index.ts`:
+
+   ```typescript
+   import { registerFeatureNameHandlers } from './handlers/feature-name.handlers'
+   // ... dentro de registerIpcHandlers():
+   registerFeatureNameHandlers()
+   ```
+
+5. **IMPORTANTE**: Atualize `ALLOWED_CHANNELS` em `electron/preload/index.ts`:
+
+   ```typescript
+   const ALLOWED_CHANNELS = new Set<keyof IpcEvents>([
+     // ... existing channels
+     'feature-name:getAll',
+     'feature-name:getById',
+     'feature-name:create',
+     'feature-name:update',
+     'feature-name:delete',
+   ])
+   ```
+
+6. Registre a feature no roteador se ela tiver páginas.
    Arquivo: `src/app/router/index.tsx`
 
-4. Rode o lint para garantir que o código gerado esteja em conformidade.
+7. Rode o lint para garantir conformidade.
    Comando: `npm run lint`

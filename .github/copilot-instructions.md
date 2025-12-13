@@ -37,4 +37,23 @@
 ## Ao implementar novas features
 
 - Prefira adicionar/consumir IPC através de um `*.service.ts` na feature e manter componentes focados em UI.
-- Ao criar novos canais IPC: 1) Adicionar tipagem em `src/shared/types/ipc.ts`, 2) criar `electron/main/ipc/handlers/<x>.handlers.ts`, 3) registrar em `electron/main/ipc/index.ts`.
+- Ao criar novos canais IPC:
+  1. Adicionar tipagem em `src/shared/types/ipc.ts`
+  2. Criar `electron/main/ipc/handlers/<x>.handlers.ts`
+  3. Registrar em `electron/main/ipc/index.ts`
+  4. **Atualizar `ALLOWED_CHANNELS`** em `electron/preload/index.ts`
+  5. Criar service em `src/features/<x>/services/<x>.service.ts`
+
+> ⚠️ Esquecer o passo 4 causará erro: `IPC channel "x" is not allowed`
+
+## Segurança
+
+Este projeto implementa múltiplas camadas de segurança:
+
+- **Main Process**: `sandbox`, `contextIsolation`, permission handlers
+- **Preload**: Whitelist de canais IPC (`ALLOWED_CHANNELS`)
+- **CSP**: Content Security Policy restritivo
+
+Documentação completa: `docs/SECURITY.md`
+
+Use `npm run security:check` para verificar vulnerabilidades.
