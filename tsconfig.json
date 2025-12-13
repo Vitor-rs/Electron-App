@@ -1,7 +1,14 @@
 {
   "compilerOptions": {
     "strict": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@shared/*": ["src/shared/*"],
+      "@features/*": ["src/features/*"],
+      "@main/*": ["electron/main/*"]
+    }
   },
   "files": [],
   "references": [

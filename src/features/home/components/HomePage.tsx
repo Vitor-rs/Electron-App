@@ -6,7 +6,6 @@ import {
   CardHeader,
   CardTitle,
 } from '@/shared/components/ui/card'
-import { ScrollArea } from '@/shared/components/ui/scroll-area'
 
 export function HomePage() {
   const stack = [
@@ -33,17 +32,20 @@ export function HomePage() {
   ]
 
   return (
-    <ScrollArea className="h-full">
-      <div className="container mx-auto max-w-5xl space-y-8 py-10">
-        <div className="space-y-4 text-center">
-          <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl">
-            Electron App Template
-          </h1>
-          <p className="mx-auto max-w-2xl text-xl text-muted-foreground">
-            Uma fundação robusta e moderna para construir aplicações desktop de alta performance.
-          </p>
-        </div>
+    <div className="container mx-auto max-w-5xl space-y-16 py-10">
+      {/* Overview Section */}
+      <section id="overview" className="space-y-4 text-center">
+        <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl">
+          Electron App Template
+        </h1>
+        <p className="mx-auto max-w-2xl text-xl text-muted-foreground">
+          Uma fundação robusta e moderna para construir aplicações desktop de alta performance.
+        </p>
+      </section>
 
+      {/* Stack Section */}
+      <section id="stack" className="space-y-6">
+        <h2 className="text-3xl font-bold tracking-tight">Tech Stack</h2>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {stack.map((group) => (
             <Card key={group.category} className="h-full">
@@ -63,9 +65,12 @@ export function HomePage() {
             </Card>
           ))}
         </div>
+      </section>
 
+      {/* Architecture Section */}
+      <section id="architecture" className="space-y-6">
+        <h2 className="text-3xl font-bold tracking-tight">Arquitetura</h2>
         <div className="rounded-lg border bg-card p-8 text-card-foreground shadow-sm">
-          <h2 className="mb-4 text-2xl font-bold">Arquitetura do Projeto</h2>
           <div className="grid gap-6 md:grid-cols-2">
             <div>
               <h3 className="mb-2 font-semibold text-primary">Backend (Main Process)</h3>
@@ -87,7 +92,27 @@ export function HomePage() {
             </div>
           </div>
         </div>
-      </div>
-    </ScrollArea>
+      </section>
+
+      {/* Database Section */}
+      <section id="database" className="space-y-6">
+        <h2 className="text-3xl font-bold tracking-tight">Database</h2>
+        <p className="text-muted-foreground">
+          O projeto utiliza <strong>better-sqlite3</strong> para alta performance e{' '}
+          <strong>Drizzle ORM</strong> para type-safety. O arquivo do banco de dados é criado
+          automaticamente no diretório de dados do usuário.
+        </p>
+      </section>
+
+      {/* IPC Section */}
+      <section id="ipc" className="space-y-6">
+        <h2 className="text-3xl font-bold tracking-tight">IPC & Segurança</h2>
+        <p className="text-muted-foreground">
+          A comunicação entre processos é feita exclusivamente via <strong>ContextBridge</strong> e{' '}
+          <strong>ipcRenderer.invoke</strong>. Todos os canais são tipados em{' '}
+          <code>src/shared/types/ipc.ts</code>.
+        </p>
+      </section>
+    </div>
   )
 }
