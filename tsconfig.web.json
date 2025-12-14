@@ -11,5 +11,10 @@
       "@main/*": ["electron/main/*"]
     }
   },
-  "include": ["src/**/*", "src/**/*.tsx", "electron/preload/**/*"]
+  "include": [
+    "src/**/*",
+    "src/**/*.tsx",
+    "electron/preload/**/*",
+    "electron/main/database/schema.ts"
+  ]
 }

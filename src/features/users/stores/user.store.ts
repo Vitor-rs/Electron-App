@@ -47,7 +47,7 @@ export const useUserStore = create<UserState & UserActions>()(
         fetchUsers: async () => {
           set({ isLoading: true, error: null })
           try {
-            const users = await window.electronAPI.invoke<User[]>('users:getAll')
+            const users = await window.electronAPI.invoke('users:getAll')
             set({ users, isLoading: false })
           } catch (error) {
             set({
